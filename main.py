@@ -5,10 +5,8 @@ def main():
     tree = BST.ABR()
     tree.insert(4)
     tree.insert(5)
-    for x in range(20, 10, -1):
+    for x in range(0, 70, 1):
         tree.insert(x)
-    print(tree.find(5))
-    print(tree.find(2))
     tree.inorder()
 
 

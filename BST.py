@@ -1,14 +1,10 @@
-class Node:
-    def __init__(self, key):
+class Node:  # rappresenta un nodo dell'albero binario di ricerca
+    def __init__(self, key):  # costruttore della classe
         self.key = key
         self.left = None
         self.right = None
-
-    def get(self):
-        return self.key
-
-    def set(self, key):
-        self.key = key
+        self.root = None
+        # left e right sono dichiarati e inizializzati a null
 
     def getChildren(self):
         children = []
@@ -18,63 +14,53 @@ class Node:
             children.append(self.right)
         return children
 
-    def printTree(self, level=0):
-        if self != None:
-            self.printTree(self.left, level + 1)
-            print(' ' * 4 * level + '-> ' + self.value)
-            self.printTree(self.right, level + 1)
+    # getter
+    def get(self):
+        return self.key
 
-class ABR:
+    def set(self, key):
+        self.key = key
+
+
+class ABR:  # rappresenta un albero binario di ricerca
     def __init__(self):
         self.root = None
 
+    # imposta la radice
     def setRoot(self, key):
         self.root = Node(key)
 
+    # metodo per inserire un valore nell'albero
     def insert(self, key):
-        if (self.root is None):
-            self.setRoot(key)
-        else:
-            self.insertNode(self.root, key)
-
-    def insertNode(self, currentNode, key):
-        if (key <= currentNode.key):
-            if (currentNode.left):
-                self.insertNode(currentNode.left, key)
+        y = None
+        x = self.root
+        while x is not None:
+            y = x
+            if key < x.key:
+                x = x.left
             else:
-                currentNode.left = Node(key)
-        elif (key > currentNode.key):
-            if (currentNode.right):
-                self.insertNode(currentNode.right, key)
-            else:
-                currentNode.right = Node(key)
-
-    def find(self, key):
-        return self.findNode(self.root, key)
-
-    def findNode(self, currentNode, key):
-        if (currentNode is None):
-            return False
-        elif (key == currentNode.key):
-            return True
-        elif (key < currentNode.key):
-            return self.findNode(currentNode.left, key)
+                x = x.right
+        node = Node(key)
+        node.root = y
+        if y is None:
+            self.root = node
+        elif node.key < y.key:
+            y.left = node
         else:
-            return self.findNode(currentNode.right, key)
+            y.right = node
 
+    # visita l'albero in ordine crescente
     def inorder(self):
         def _inorder(v):
             if (v is None):
                 return
             if (v.left is not None):
                 _inorder(v.left)
-            print(v.key, end = "-")
+            print(v.key, end="-")
             if (v.right is not None):
                 _inorder(v.right)
 
         _inorder(self.root)
 
     def printTree(self):
-       self.root.printTree(self.root)
-
-
+        self.root.printTree(self.root)
