@@ -1,11 +1,15 @@
 import BST
+import RBT
 
 
 def main():
     tree = BST.ABR()
-    tree.insert(4)
-    tree.insert(5)
-    for x in range(0, 70, 1):
+    for x in range(0, 7, 1):
+        tree.insert(x)
+    tree.inorder()
+
+    tree = RBT.ARN()
+    for x in range(0, 7, 1):
         tree.insert(x)
     tree.inorder()
 
