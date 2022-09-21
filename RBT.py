@@ -103,6 +103,7 @@ class RBT:
 
     def inorder(self):
         print()
+
         def _inorder(v):
             if v is self.NIL:
                 return
@@ -113,3 +114,21 @@ class RBT:
                 _inorder(v.right)
 
         _inorder(self.root)
+    #FIXME
+    def height (self):
+        def _height(root):
+            # controlla se l'albero è vuoto
+            if root is self.NIL:
+                return 0
+
+            leftAns = _height(root.left)
+            rightAns = _height(root.right)
+            return max(leftAns, rightAns) + 1
+        return _height(self.root)
+
+    def depth(self):
+        def _depth (root):
+            left_depth = root.left.depth() if root.left else 0
+            right_depth = root.right.depth() if root.right else 0
+            return max(left_depth, right_depth) + 1
+        return _depth(self.root)

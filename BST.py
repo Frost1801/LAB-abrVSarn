@@ -8,9 +8,9 @@ class Node:  # rappresenta un nodo dell'albero binario di ricerca
 
     def getChildren(self):
         children = []
-        if self.left != None:
+        if self.left is not None:
             children.append(self.left)
-        if self.right != None:
+        if self.right is not None:
             children.append(self.right)
         return children
 
@@ -52,15 +52,32 @@ class BST:  # rappresenta un albero binario di ricerca
     # visita l'albero in ordine crescente
     def inorder(self):
         def _inorder(v):
-            if (v is None):
+            if v is None:
                 return
-            if (v.left is not None):
+            if v.left is not None:
                 _inorder(v.left)
             print(v.key, end="-")
-            if (v.right is not None):
+            if v.right is not None:
                 _inorder(v.right)
 
         _inorder(self.root)
 
-    def printTree(self):
-        self.root.printTree(self.root)
+
+    #FIXME
+    def height (self):
+        def _height(root):
+            # controlla se l'albero è vuoto
+            if root is None:
+                return 0
+
+            leftAns = _height(root.left)
+            rightAns = _height(root.right)
+            return max(leftAns, rightAns) + 1
+        return _height(self.root)
+
+    def depth(self):
+        def _depth (root):
+            left_depth = root.left.depth() if root.left else 0
+            right_depth = root.right.depth() if root.right else 0
+            return max(left_depth, right_depth) + 1
+        return _depth(self.root)
