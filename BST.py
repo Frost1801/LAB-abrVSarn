@@ -22,7 +22,7 @@ class Node:  # rappresenta un nodo dell'albero binario di ricerca
         self.key = key
 
 
-class ABR:  # rappresenta un albero binario di ricerca
+class BST:  # rappresenta un albero binario di ricerca
     def __init__(self):
         self.root = None
 

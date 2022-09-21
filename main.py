@@ -3,15 +3,16 @@ import RBT
 
 
 def main():
-    tree = BST.ABR()
+    tree = BST.BST()
     for x in range(0, 7, 1):
         tree.insert(x)
     tree.inorder()
 
-    tree = RBT.ARN()
+    tree1 = RBT.RBT()
     for x in range(0, 7, 1):
-        tree.insert(x)
-    tree.inorder()
+        tree1.insert(x)
+    tree1.inorder()
+
 
 
 if __name__ == "__main__":

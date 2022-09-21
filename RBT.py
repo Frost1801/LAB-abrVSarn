@@ -1,33 +1,16 @@
+import BST
 
 
-class NodoARN:  # rappresenta un nodo dell'albero binario di ricerca
-    def __init__(self, key):  # costruttore della classe
-        self.key = key
-        self.left = None
-        self.right = None
-        self.root = None
-        self.color = 0 # zero nero uno rosso
-        # left e right sono dichiarati e inizializzati a null
+class NodoARN(BST.Node):  # rappresenta un nodo dell'albero binario di ricerca
+    def __init__(self, key):
+        super().__init__(key)
+        self.color = 0  # zero nero uno rosso
 
-    def getChildren(self):
-        children = []
-        if self.left != None:
-            children.append(self.left)
-        if self.right != None:
-            children.append(self.right)
-        return children
 
-    # getter
-    def get(self):
-        return self.key
-
-    def set(self, key):
-        self.key = key
-
-class ARN:
+class RBT:
     def __init__(self):
-        self.root = None
         self.NIL = NodoARN(None)
+        self.root = self.NIL
 
     # imposta la radice
     def setRoot(self, key):
@@ -56,8 +39,7 @@ class ARN:
         node.color = 1
         self.RBInsertFixup(node)
 
-
-    def RBInsertFixup(self,node):
+    def RBInsertFixup(self, node):
         while node.root.color == 1:
             if node.root == node.root.root.left:
                 y = node.root.root.right
@@ -72,7 +54,7 @@ class ARN:
                         self.LeftRotate(self, node)
                     node.root.color = 0
                     node.root.root.color = 1
-                    self.RightRotate(self, node.root.root)
+                    self.RightRotate(node.root.root)
             else:
                 y = node.root.root.left
                 if y.color == 1:
@@ -86,10 +68,10 @@ class ARN:
                         self.RightRotate(self, node)
                     node.root.color = 0
                     node.root.root.color = 1
-                    self.LeftRotate(self, node.root.root)
+                    self.LeftRotate(node.root.root)
         self.root.color = 0
 
-    def LeftRotate (self, node):
+    def LeftRotate(self, node):
         y = node.right
         node.right = y.left
         if y.left is not self.NIL:
@@ -104,7 +86,7 @@ class ARN:
         y.left = node
         node.root = y
 
-    def RightRotate (self, node):
+    def RightRotate(self, node):
         y = node.left
         node.left = y.right
         if y.right is not self.NIL:
@@ -120,13 +102,14 @@ class ARN:
         node.root = y
 
     def inorder(self):
+        print()
         def _inorder(v):
-            if (v is self.NIL):
+            if v is self.NIL:
                 return
-            if (v.left is not self.NIL):
+            if v.left is not self.NIL:
                 _inorder(v.left)
             print(v.key, end="-")
-            if (v.right is not self.NIL):\
+            if v.right is not self.NIL:
                 _inorder(v.right)
 
         _inorder(self.root)
