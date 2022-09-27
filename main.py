@@ -4,11 +4,13 @@ import Tester
 
 
 def main():
-    n = 1
+    lower = 1
+    upper = 100
     t = Tester.Tester()
-    t.runTest(t.seqRelativePath, n, False)
-    for i in range (0,10):
+
+    for n in range (lower, upper):
         t.runTest(t.randRelativePath, n, True)
+        t.runTest(t.seqRelativePath, n, False)
 
 
 if __name__ == "__main__":

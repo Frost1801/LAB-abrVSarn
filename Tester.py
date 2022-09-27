@@ -22,12 +22,12 @@ def fillTree(tree, n, rand):
 class Tester:
     def __init__(self):
         self.header = ["ID", "N.nodi", "Altezza"]
-        self.seqRelativePath = "out/sequantial.xlsx"
+        self.seqRelativePath = "out/sequential.xlsx"
         self.randRelativePath = "out/random.xlsx"
         self.BST_CODE = "BST"
         self.RBT_CODE = "RBT"
 
-    def runTest(self, path, n, random):
+    def runTest(self, path, n, rand):
         if not exists(path):
             wb = Workbook()
             ws = wb.active
@@ -41,8 +41,8 @@ class Tester:
         rbTree = RBT.RBT()
         binTree = BST.BST()
 
-        rbTree = fillTree(rbTree, n, random)
-        binTree = fillTree(binTree, n, random)
+        rbTree = fillTree(rbTree, n, rand)
+        binTree = fillTree(binTree, n, rand)
 
         binH = binTree.root.height()
         rbH = rbTree.root.height()
@@ -50,3 +50,4 @@ class Tester:
         ws.append([self.BST_CODE, n, binH])
         ws.append([self.RBT_CODE, n, rbH])
         wb.save(path)
+
