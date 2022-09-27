@@ -51,7 +51,7 @@ class RBT:
                 else:
                     if node == node.root.right:
                         node = node.root
-                        self.LeftRotate(self, node)
+                        self.LeftRotate(node)
                     node.root.color = 0
                     node.root.root.color = 1
                     self.RightRotate(node.root.root)
@@ -65,7 +65,7 @@ class RBT:
                 else:
                     if node == node.root.left:
                         node = node.root
-                        self.RightRotate(self, node)
+                        self.RightRotate( node)
                     node.root.color = 0
                     node.root.root.color = 1
                     self.LeftRotate(node.root.root)
