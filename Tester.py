@@ -11,9 +11,9 @@ import random
 def fillTree(tree, n, rand):
     values = []
     for x in range(0, n, 1):
-        values.append(x)
+        values.append(x)  # riempie la lista con i valori nel range consentito
     if rand:
-        random.shuffle(values)
+        random.shuffle(values)  # se è l'opzione random, randomizza l'ordine d'inserimento
     for x in values:
         tree.insert(x)
     return tree
@@ -28,7 +28,7 @@ class Tester:
         self.RBT_CODE = "RBT"
 
     def runTest(self, path, n, rand):
-        if not exists(path):
+        if not exists(path):  # verifica se il file è già stato creato
             wb = Workbook()
             ws = wb.active
             ws.title = "Output"
